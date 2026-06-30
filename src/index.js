@@ -1,11 +1,16 @@
-import express from "express"
-import router from "./router/exercicios.js"
+import express from "express";
+import router from "./router/exercicios.js";
 
-const app = express()
-app.use(express.json())
+const app = express();
 
-app.use('/api', router)
+app.use(express.json());
 
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000")
-})
+app.use("/api", router);
+
+if (!process.env.TEST) {
+    app.listen(3000, () => {
+        console.log("Servidor rodando na porta 3000");
+    });
+}
+
+export default app;
